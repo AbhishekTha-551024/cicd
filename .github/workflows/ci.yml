@@ -5,7 +5,12 @@ on:
     branches: [main]
 
 jobs:
-  hello:
+  analyze:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello from GitHub robot"
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: flutter analyze
